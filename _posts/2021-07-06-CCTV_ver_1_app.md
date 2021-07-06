@@ -3,7 +3,6 @@ layout: single
 title:  "CCTV_ver_1_app. 버튼 클릭 시 데이터 일부 변경(Ajax 사용하여 DB 접근 요청)"
 ---
 
-app.js
 
 [작동 영상 확인](https://www.youtube.com/watch?v=P29KqUuVSZo)
 
@@ -11,9 +10,6 @@ app.js
 
 ### 주기적으로 업데이트 되고 있는 데이터베이스의 최신값을 받아 표로 출력한다.  
 ### 버튼 클릭 시 서버에 데베접근을 요청하고 가장 최근값을 불러와 표의 데이터를 변경한다.  
-#
-#
-
 
 
 
@@ -35,7 +31,7 @@ app.get('/show', (req, res,next) => {
     });
 });
 ```
-#
+
 
 # 테이블 형식에 가져온 최근 값 넣어줌
 show.ejs
@@ -62,7 +58,7 @@ show.ejs
   </script>
 </table>
  ```
-#
+
 # 버튼 클릭 시 서버에 요청 (Ajax)
 show.ejs
 ```html
@@ -98,7 +94,7 @@ show.ejs
 
  </script>
 ```
-#
+
 # 서버에서 요청 처리 (DB 재 접근)
 app.js
 ```js
@@ -117,7 +113,7 @@ app.post('/show', (req, res, next) => {
 });
 
 ```
-#
+
 # json 형태로 받아온 값으로 데이터 일부 변경
 show.ejs 에서 ajax 부분 일부
 ```html
