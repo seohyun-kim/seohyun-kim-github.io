@@ -1,6 +1,7 @@
 ---
-layout: posts
+layout: archive
 title:  "CCTV_ver_1_app. 버튼 클릭 시 데이터 일부 변경(Ajax 사용하여 DB 접근 요청
+date: 2021-07-06
 comments: true
 ---
 
