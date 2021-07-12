@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: post
 title:  "CCTV_ver_1_app. 버튼 클릭 시 데이터 일부 변경(Ajax 사용하여 DB 접근 요청"
 author: seohyun-kim
 date: 2021-07-06 14:00
