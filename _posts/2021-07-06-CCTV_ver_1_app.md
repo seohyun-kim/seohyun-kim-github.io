@@ -1,9 +1,11 @@
 ---
 layout: archive
 title:  "CCTV_ver_1_app. 버튼 클릭 시 데이터 일부 변경(Ajax 사용하여 DB 접근 요청
-date: 2021-07-06
+author: seohyun-kim
+date: 2021-07-06 14:00
 comments: true
 ---
+
 
 
 [작동 영상 확인](https://www.youtube.com/watch?v=P29KqUuVSZo)
