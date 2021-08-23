@@ -97,6 +97,9 @@ create table year_stats(
 ![image](https://user-images.githubusercontent.com/61939286/130327422-587d8c5a-c706-4696-9d69-157c2d7634f0.png)  
 
 
+![image](https://user-images.githubusercontent.com/61939286/130488173-3ea18185-dd8a-4734-9b2b-9a942f7d535a.png)  
+(데이터가 들어오는 것이 없어서 NULL상태, 시간에 맞추어 잘 작동됨)
+
 ```sql  
 
  # 0). 매시 00분에 1시간 치 데이터 평균과 기준값을 `hourly_stats` 테이블에 저장   
@@ -112,7 +115,12 @@ CREATE EVENT `hourly_stats`
                 CONVERT(AVG(n_car+n_truck+n_bus+n_bicycle+n_motorcycle+n_electric_scooter)+1.5*STDDEV(n_car+n_truck+n_bus+n_bicycle+n_motorcycle+n_electric_scooter), float)
                 FROM cctv_data 
                 WHERE date_time BETWEEN DATE_ADD( DATE_FORMAT(now(), '%Y-%m-%d %H:00:00'), INTERVAL -1 hour) AND DATE_ADD( DATE_FORMAT(now(), '%Y-%m-%d %H:59:59'), INTERVAL -1 hour)  
-                
+```                
+<br>  
+
+![image](https://user-images.githubusercontent.com/61939286/130488313-a055bbf2-b5da-44de-8e51-7b734580732c.png)  
+(데이터가 들어오는 것이 없어서 NULL 상태, 시간에 맞추어 잘 작동됨)
+ ```sql               
 # 1). 매일 00:00:00 에 하루치 데이터 평균과 기준값을 `day_stats` 테이블에 저장   
 CREATE EVENT `day_stats`
     ON SCHEDULE EVERY 1 Day 
