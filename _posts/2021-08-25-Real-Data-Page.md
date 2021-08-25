@@ -8,7 +8,9 @@ comments: true
 
 ## 메인 페이지 UI  
 
-(이미지 첨부)
+
+![image](https://user-images.githubusercontent.com/61939286/130838770-71f13f35-9174-46d2-8898-2742fa080eb7.png)  
+![image](https://user-images.githubusercontent.com/61939286/130838910-e495351c-10d5-4245-8eac-3fe79e85339b.png)
 
 
 #### ✔ Done  
