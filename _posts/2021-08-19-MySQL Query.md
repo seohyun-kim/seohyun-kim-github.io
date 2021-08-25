@@ -119,6 +119,8 @@ CREATE EVENT `hourly_stats`
 <br>  
 
 ![image](https://user-images.githubusercontent.com/61939286/130488313-a055bbf2-b5da-44de-8e51-7b734580732c.png)  
+
+
 (데이터가 들어오는 것이 없어서 NULL 상태, 시간에 맞추어 잘 작동됨)
  ```sql               
 # 1). 매일 00:00:00 에 하루치 데이터 평균과 기준값을 `day_stats` 테이블에 저장   
@@ -143,6 +145,9 @@ CREATE EVENT `day_stats`
   
  <div markdown="1">  
    
+   
+   ![image](https://user-images.githubusercontent.com/61939286/130839143-866fe411-3bae-4fb0-b8e6-52f5aac8719c.png)  
+
 ```sql
   #### 2). 매주 월요일에 `day_stats` table의 일주일 치(7개의 row) 평균을 `week_stats` 테이블에 저장                 
   CREATE EVENT `week_stats`
