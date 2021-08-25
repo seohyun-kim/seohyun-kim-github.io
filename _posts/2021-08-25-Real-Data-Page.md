@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Front-end"
+title:  "실제 데이터 페이지 제작 "
 author: seohyun-kim
 date: 2021-08-25 18:00
 comments: true
@@ -36,3 +36,7 @@ comments: true
 
 ## 로그인 정보 암호화  
 
+#### 사용자 정보 테이블
+![image](https://user-images.githubusercontent.com/61939286/130837541-06c571ca-c452-41e6-b9fc-aa4ab3d7971c.png)
+
+node.js 에서 입력받은 패스워드를 md5 암호화를 한 뒤, 그 값이 db정보와 같은 지 비교
