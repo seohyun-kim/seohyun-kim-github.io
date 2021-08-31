@@ -8,9 +8,9 @@ comments: true
 
 ## ftp로 NAS서버에서 .avi 파일을 받아와 저장하고, .m4v 파일로 변환  
 
-1. (실시간 영상처리가 완료된) 모든 영상 `삭제` 
-2. 현재 시간으로부터 `5분 전`에 해당하는 영상을 가져옴
-3. 저장 된 .avi 파일을 .m4v 확장자로 `변환`   
+1. (실시간 영상처리가 완료된) 모든 영상 **삭제**
+2. 현재 시간으로부터 **5분 전에** 해당하는 영상을 가져옴
+3. 저장 된 .avi 파일을 .m4v 확장자로 **변환**     
 <br>  
 
 #### 쉘 스크립트 코드  
@@ -80,4 +80,10 @@ ffmpeg -i "${DOWNLOAD_DIR}/${FILE_NAME}" -vcodec libx264 -an "${DOWNLOAD_DIR}/${
 ```
 */5 * * * * /home/malab/workspace/ftp/sbin/download.sh
 ```
+<br>  
 
+
+### 파일 위치  
+
+` 비디오 저장 위치 ` : /home/malab/workspace/ftp/video  
+` 쉘 스크립트 파일 ` : /home/malab/workspace/ftp/sbin/download.sh  
