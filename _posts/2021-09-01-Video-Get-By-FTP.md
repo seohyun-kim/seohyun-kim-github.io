@@ -14,42 +14,46 @@ comments: true
 <br>  
 
 #### 쉘 스크립트 코드  
-
 ```
 #!/bin/sh
 
-# 변수 선언
+# 변수선언
 MYHOME=/home/malab/workspace/ftp
 SBIN_DIR=${MYHOME}/sbin
-LOG_DIR=${SBIN_DIR}/log
+LOG_DIR=${MYHOME}/log
 DOWNLOAD_DIR=${MYHOME}/video
 ftp_script_file=${SBIN_DIR}/ftpscript.pcl
 
-#날짜 계산
+# 현재 시간 추출
 DATE=`date +%Y-%m-%d`
-TIME=`date +%H-%M-00`
-TIME_5M=`date -d '5 minute ago' +%H-%M-00`
+TIME=`date +%H-%M-`
+TIME_5M=`date -d '5 minute ago' +%H-%M-`
 HOUR=`date +%H`
 
-# 다운받은 비디오 모두 삭제
+# 존재하는 비디오(5분이상 지난) 모두 삭제
 rm  ${DOWNLOAD_DIR}/*
 
-# NAS 서버 정보
-USER= `   `
-PASSWD=`    `
-TARGET_IP=`    `
-
+USER=
+PASSWD=
+TARGET_IP=
 TARGET_DIR=교내_CCTV_20210107/record_nvr/channel1/${DATE}/${HOUR}
-# (ex: TARGET_DIR=교내_CCTV_20210107/record_nvr/channel1/2021-07-25/14)
+# (ex: TARGET_DIR=교내_CCTV_20210107/record_nvr/channel1/2021-07-26/14 )
 
-# 해당 파일 명 지정
-FILE_NAME="${DATE} ${TIME}~${TIME_5M}.avi" # (ex:FILE_NAME="2021-07-25 14-00-00~14-05-00.avi")
+# 파일에 따라 0초인 것도 있고 1초인 것도 있었음
+FILE_NAME1="${DATE} ${TIME}00~${TIME_5M}00.avi"
+FILE_NAME2="${DATE} ${TIME}01~${TIME_5M}01.avi"
 
-# ftp 스크립트 파일 삭제
+# 파일명 예시
+#FILE_NAME1="2021-07-26 14-00-00~14-05-00.avi"
+#FILE_NAME2="2021-07-26 14-00-01~14-05-01.avi"
+
+
 if [ -r $ftp_script_file ]
 then
 	rm -rf $ftp_script_file
 fi
+
+
 
 cat << FTPSCRIPT_EOF > ${ftp_script_file}
 user ${USER} ${PASSWD}
@@ -59,7 +63,9 @@ prompt
 bi
 cd ${TARGET_DIR}
 lcd ${DOWNLOAD_DIR}
-get "${FILE_NAME}" "$FILE_NAME" # (ex. "2021-07=25 14-00-00~14-05-00.avi")
+get "${FILE_NAME1}" "$FILE_NAME1"
+get "${FILE_NAME2}" "$FILE_NAME2"
+# (ex. "2021-07=25 14-00-00~14-05-00.avi")
 lcd ${MYHOME}
 
 bye
@@ -69,16 +75,20 @@ echo "target system: ${USER}, ${TARGET_IP}"
 ftp -n ${TARGET_IP} < ${ftp_script_file}
 # if log command
 
+# m4v파일로 변환
 rm -rf $ftp_script_file
+ffmpeg -i "${DOWNLOAD_DIR}/${FILE_NAME1}" -vcodec libx264 -an "${DOWNLOAD_DIR}/${FILE_NAME1%.*}.m4v" || ffmpeg -i "${DOWNLOAD_DIR}/${FILE_NAME2}" -vcodec libx264 -an "${DOWNLOAD_DIR}/${FILE_NAME2%.*}.m4v"
+echo "${FILE_NAME%.*}.m4v"
 
-# 동영상 파일 변환
-ffmpeg -i "${DOWNLOAD_DIR}/${FILE_NAME}" -vcodec libx264 -an "${DOWNLOAD_DIR}/${FILE_NAME%.*}.m4v" 
-
-```
-## crontab 으로 5분마다 실행  
+# cat << complete > ${LOG_DIR}/log.txt
 
 ```
-*/5 * * * * /home/malab/workspace/ftp/sbin/download.sh
+
+## crontab 으로 5분마다 실행 
+10초 딜레이
+
+```
+*/5 8-18 * * * sleep 10; /home/malab/workspace/ftp/sbin/download.sh
 ```
 <br>  
 
