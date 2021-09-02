@@ -95,5 +95,5 @@ echo "${FILE_NAME%.*}.m4v"
 
 ### 파일 위치  
 
-` 비디오 저장 위치 ` : /home/malab/workspace/ftp/video  
-` 쉘 스크립트 파일 ` : /home/malab/workspace/ftp/sbin/download.sh  
+`비디오 저장 위치` : /home/malab/workspace/ftp/video  
+`쉘 스크립트 파일` : /home/malab/workspace/ftp/sbin/download.sh  
