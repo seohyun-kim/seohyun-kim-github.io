@@ -85,7 +85,7 @@ echo "${FILE_NAME%.*}.m4v"
 ```
 
 ## crontab 으로 5분마다 실행 
-10초 딜레이
+오전 8시 부터 오후 6시까지 5분마다 실행하되 실행 전 10초 딜레이
 
 ```
 */5 8-18 * * * sleep 10; /home/malab/workspace/ftp/sbin/download.sh
